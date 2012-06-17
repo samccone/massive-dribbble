@@ -1,7 +1,7 @@
 npm install
 
 coffee -w -c server.coffee
-coffee -w -c server.dribbble.coffee
+coffee -w -c dribbble.coffee
 
 node server.js
 
