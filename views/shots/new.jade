@@ -1,0 +1,7 @@
+h3 Upload your Massive Shot
+h4= data.title
+img( src = data.image_url )
+form(action = "shots/create", method = "POST", enctype="multipart/form-data")
+  input(name = "id", value = data.id, style="display: none")
+  input(type = "file", name = "massive")
+  input(type = "submit", value = "upload")
