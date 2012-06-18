@@ -27,12 +27,17 @@
 
   webServer.post('/shots/create', function(req, res) {
     return fs.readFile(req.files.massive.path, function(err, data) {
-      var newPath;
-      newPath = __dirname + '/uploads/' + req.body.id + '.png';
-      return fs.writeFile(newPath, data, function(err) {
-        if (err) throw "Error Saving File " + err;
-        return res.redirect('/');
-      });
+      var file_type, newPath;
+      file_type = req.files.massive.type.match(/image\/([jpeg|png|gif]+)/);
+      if (file_type) {
+        newPath = "" + __dirname + "/uploads/" + req.body.id + "." + file_type[1];
+        return fs.writeFile(newPath, data, function(err) {
+          if (err) throw "Error Saving File " + err;
+          return res.redirect('/');
+        });
+      } else {
+        throw "What do you think you can just upload any kind of shit here? Image plz.";
+      }
     });
   });
 

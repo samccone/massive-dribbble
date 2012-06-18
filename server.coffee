@@ -17,11 +17,15 @@ webServer.post '/shots', (req, res) ->
 
 webServer.post '/shots/create', (req, res) ->
   fs.readFile req.files.massive.path, (err, data) ->
-    ## TODO MAKE THIS SAVE THE RIGHT FILE TYPE
-    newPath = __dirname + '/uploads/' + req.body.id + '.png'
-    fs.writeFile newPath, data, (err) ->
-      if err then throw "Error Saving File " + err
-      ## TODO MAKE A DB SAVE REDIRECT TO MASSIVE SHOT
-      res.redirect '/'
+    # Any other types we need in here?
+    file_type = req.files.massive.type.match /image\/([jpeg|png|gif]+)/
+    if file_type
+      newPath = "#{__dirname}/uploads/#{req.body.id}.#{file_type[1]}"
+      fs.writeFile newPath, data, (err) ->
+        if err then throw "Error Saving File #{err}"
+        ## TODO MAKE A DB SAVE REDIRECT TO MASSIVE SHOT
+        res.redirect '/'
+    else
+      throw "What do you think you can just upload any kind of shit here? Image plz."
 
 webServer.listen '9000'
