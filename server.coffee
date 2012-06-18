@@ -20,7 +20,7 @@ webServer.post '/shots/create', (req, res) ->
     ## TODO MAKE THIS SAVE THE RIGHT FILE TYPE
     newPath = __dirname + '/uploads/' + req.body.id + '.png'
     fs.writeFile newPath, data, (err) ->
-      if err then throw "Error Sacing File " + err
+      if err then throw "Error Saving File " + err
       ## TODO MAKE A DB SAVE REDIRECT TO MASSIVE SHOT
       res.redirect '/'
 

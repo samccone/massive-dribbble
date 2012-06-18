@@ -1,8 +1,0 @@
-npm install
-
-coffee -w -c server.coffee
-coffee -w -c dribbble.coffee
-
-node server.js
-
-http://0.0.0.0:9000
