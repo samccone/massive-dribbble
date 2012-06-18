@@ -17,7 +17,6 @@ webServer.post '/shots', (req, res) ->
 
 webServer.post '/shots/create', (req, res) ->
   fs.readFile req.files.massive.path, (err, data) ->
-    # Any other types we need in here?
     file_type = req.files.massive.type.match /image\/([jpeg|png|gif]+)/
     if file_type
       newPath = "#{__dirname}/uploads/#{req.body.id}.#{file_type[1]}"
