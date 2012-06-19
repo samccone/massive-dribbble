@@ -1,7 +1,12 @@
-express   = require 'express'
-fs        = require 'fs'
-dribbble  = require './dribbble'
-webServer = express.createServer()
+express     = require 'express'
+fs          = require 'fs'
+Sequelize   = require 'sequelize'
+dribbble    = require './dribbble'
+webServer   = express.createServer()
+sequelize   = new Sequelize 'foobar', '', '',
+  dialect: 'postgres'
+
+MassiveShot = sequelize.import __dirname + "/models/models.js"
 
 webServer.set 'view engine', 'jade'
 webServer.use express.bodyParser()
