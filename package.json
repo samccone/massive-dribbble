@@ -5,6 +5,8 @@
     "express": "latest",
     "jade": "latest",
     "request": "~2.9.202",
-    "supervisor": "~0.3.5"
+    "supervisor": "~0.3.5",
+    "pg": "latest",
+    "sequelize": "latest"
   }
 }
